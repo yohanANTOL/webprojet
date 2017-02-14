@@ -1,0 +1,4 @@
+services:
+#    wp_tournament.example:
+#        class: WP\TournamentBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

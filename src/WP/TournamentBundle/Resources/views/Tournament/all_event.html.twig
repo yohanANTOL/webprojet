@@ -1,0 +1,76 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Events - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDERCWL2.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDECWL1.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDECWL3.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            {% for event in events %}
+
+                <div class="col-md-6 img-portfolio">
+                    <a href="{{ path('wp_tournament_event',{'id':event.id}) }}">
+                        <img class="img-responsive img-hover" src="{{ asset(event.cover.webPath) }}" alt="">
+                    </a>
+                    <h3>
+                        <a href="{{ path('wp_tournament_event',{'id':event.id}) }}">{{ event.title }}</a>
+                    </h3>
+                    <p>{{ event.description }}</p>
+                    <p>{{ event.lieu }}</p>
+                    <p>{{ event.date | date('d/m/Y') }}</p>
+                </div>
+
+            {% endfor %}
+        </div>
+        <!-- /.row -->
+        {% if nbPages > 1 %}
+            <ul class="pagination">
+                {% for p in range(1, nbPages) %}
+                    <li{% if p == page %} class="active"{% endif %}>
+                        <a href="{{ path('wp_tournament_events',{'page':p}) }}">{{ p }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endblock %}

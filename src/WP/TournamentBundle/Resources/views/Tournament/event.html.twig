@@ -1,0 +1,102 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    {{ event.title }} - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDERCWL2.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDECWL1.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+            <div class="item">
+                <div class="fill" style="background-image:url('{{ asset('/img/SLIDECWL3.jpg')}}');"></div>
+                <div class="carousel-caption">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        {% if app.session.flashBag.has('notice') %}
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 flashbag">
+                    {% for msg in app.session.flashBag.get('notice') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <img class="img-responsive" src="{{ asset(event.cover.webPath) }}" alt="{{ event.cover.alt }}">
+            </div>
+
+            <div class="">
+                <h1>
+                    {{ event.title }}
+                </h1>
+                <p>
+                    DATE : {{ event.date | date('h:i d/m/Y') }}
+                </p>
+                <p>
+                    LIEU : {{ event.lieu }}
+                </p>
+                <p>
+                    DESCRIPTION : {{ event.description }}
+                </p>
+                <p>
+                    CATEGORIE : {% if event.ispro %}Pro{% else %}Amateur{% endif %}
+                </p>
+            </div>
+
+            <div class="col-lg-12">
+                <p>
+                    PLANNING :
+                </p>
+                <img class="img-responsive" src="{{ asset(event.planning.webPath) }}" alt="{{ event.planning.alt }}">
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <h2>Inscription à l'évènement</h2>
+            {% if app.user == null %}
+                <p>Vous devez être <a href="{{ path('fos_user_security_login') }}">connecter</a> pour pouvoir vous inscrire à l'évènement</p>
+            {% elseif app.user != null and ins == null %}
+                <p><a class="btn" href="{{ path('wp_tournament_eventInscription',{'id':event.id}) }}">S'inscrire à l'évènement</a></p>
+            {%elseif app.user != null and ins != null %}
+                <p>Vous êtes déjà inscrit à l'évènement.</p>
+            {% endif %}
+        </div>
+    {% endblock %}

@@ -1,0 +1,38 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <div class="row" style="margin-top:50px">
+        <div id="menuAdmin" class="col-md-3">
+            <ul>
+                <li><a href="{{ path('wp_tournament_adminEvent') }}">Event</a></li>
+                <li><a href="{{ path('wp_tournament_adminUser') }}">Utilisateur</a></li>
+                <li><a href="{{ path('wp_tournament_adminTeam') }}">Team</a></li>
+                <li><a href="{{ path('wp_tournament_adminMessages') }}">Message</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h1>Liste d'évènement</h1>
+            <div><a href="{{ path('wp_tournament_adminEventAdd') }}">Ajouter</a></div>
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Lieu</th>
+                    <th>Action</th>
+                </tr>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.date | date('d/m/Y') }}</td>
+                        <td>{{ event.lieu }}</td>
+                        <td><a href="{{ path('wp_tournament_adminEventEdit',{'id':event.id}) }}">Modifier</a><a href="{{ path('wp_tournament_adminEventDel',{'id':event.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

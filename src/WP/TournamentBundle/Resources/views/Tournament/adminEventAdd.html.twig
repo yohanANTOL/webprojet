@@ -1,0 +1,22 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <div class="row" style="margin-top:50px">
+        <div id="menuAdmin" class="col-md-3">
+            <ul>
+                <li><a href="{{ path('wp_tournament_adminEvent') }}">Event</a></li>
+                <li><a href="{{ path('wp_tournament_adminUser') }}">Utilisateur</a></li>
+                <li><a href="{{ path('wp_tournament_adminTeam') }}">Team</a></li>
+                <li><a href="{{ path('wp_tournament_adminMessages') }}">Message</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h1>Ajouter un évenement</h1>
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

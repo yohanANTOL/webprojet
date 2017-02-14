@@ -1,0 +1,29 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <div class="row" style="margin-top:50px">
+        <div id="menuAdmin" class="col-md-3">
+            <ul>
+                <li><a href="{{ path('wp_tournament_adminEvent') }}">Event</a></li>
+                <li><a href="{{ path('wp_tournament_adminUser') }}">Utilisateur</a></li>
+                <li><a href="{{ path('wp_tournament_adminTeam') }}">Team</a></li>
+                <li><a href="{{ path('wp_tournament_adminMessages') }}">Message</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h1>Lire le message</h1>
+            <ul>
+                <li>Pseudo : {{ msg.pseudo }}</li>
+                <li>Email : {{ msg.mail }}</li>
+                <li>Object : {{ msg.object }}</li>
+                <li>Message : {{ msg.message }}</li>
+                <li><a href="mailto:{{ msg.mail }}">Répondre</a></li>
+                <li><a href="{{ path('wp_tournament_adminDelMessage',{'id':msg.id}) }}">Supprimer</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

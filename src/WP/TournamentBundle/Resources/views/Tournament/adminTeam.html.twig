@@ -1,0 +1,26 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <div><a href="{{ path('wp_tournament_adminTeamAdd') }}">Ajouter</a></div>
+    <table>
+        <tr>
+            <th>Nom Team</th>
+            <th>pseudo joueur 1</th>
+            <th>pseudo joueur 2</th>
+            <th>pseudo joueur 3</th>
+            <th>pseudo joueur 4</th>
+        </tr>
+        {% for team in teams %}
+            <tr>
+                <td>{{ event.title }}</td>
+                <td>{{ event.date | date('d/m/Y') }}</td>
+                <td>{{ event.lieu }}</td>
+                <td><a href="{{ path('wp_tournament_adminTeamEdit',{'id':team.id}) }}">Modifier</a><a href="{{ path('wp_tournament_adminTeamDel',{'id':team.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

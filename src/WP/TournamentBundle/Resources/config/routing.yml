@@ -1,0 +1,126 @@
+wp_tournament_homepage:
+    path:     /
+    defaults:
+        _controller: WPTournamentBundle:Tournament:index
+
+wp_tournament_events:
+    path:   /events/{page}
+    defaults:
+        _controller: WPTournamentBundle:Tournament:events
+        page: 1
+    requirements:
+        page: \d*
+
+wp_tournament_event:
+    path:   /event/{id}
+    defaults:
+        _controller: WPTournamentBundle:Tournament:event
+    requirements:
+        id: \d+
+
+wp_tournament_eventInscription:
+    path: /event/{id}/inscription
+    defaults:
+        _controller: WPTournamentBundle:Tournament:eventIns
+    requirements:
+        id: \d+
+
+wp_tournament_contact:
+  path:     /contact
+  defaults:
+      _controller: WPTournamentBundle:Tournament:contact
+
+wp_tournament_search:
+  path:   /search/{page}
+  defaults:
+      _controller: WPTournamentBundle:Tournament:search
+      page: 1
+  requirements:
+      page: \d*
+
+wp_tournament_profil:
+  path: /profile/
+  defaults:
+      _controller: WPTournamentBundle:Tournament:user
+
+wp_tournament_adminEvent:
+  path:   /admin/event
+  defaults:
+      _controller: WPTournamentBundle:Tournament:adminEvent
+
+wp_tournament_adminEventAdd:
+  path: /admin/event/add
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminEventAdd
+
+wp_tournament_adminEventEdit:
+  path: /admin/event/edit/{id}
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminEventEdit
+  requirements:
+    id: \d+
+
+wp_tournament_adminEventDel:
+  path: /admin/event/del/{id}
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminEventDel
+  requirements:
+    id: \d+
+
+wp_tournament_adminUser:
+  path:   /admin/user
+  defaults:
+      _controller: WPTournamentBundle:Tournament:adminUser
+
+wp_tournament_adminUserBan:
+  path: /admin/user/ban/{id}
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminUserBan
+
+wp_tournament_adminIndex:
+  path:   /admin/index
+  defaults:
+      _controller: WPTournamentBundle:Tournament:adminIndex
+
+wp_tournament_adminTeam:
+  path:   /admin/team
+  defaults:
+      _controller: WPTournamentBundle:Tournament:adminTeam
+
+wp_tournament_adminTeamAdd:
+  path: /admin/team/add
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminTeamAdd
+
+wp_tournament_adminTeamEdit:
+  path: /admin/team/edit/{id}
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminTeamEdit
+  requirements:
+    id: \d+
+
+wp_tournament_adminTeamDel:
+  path: /admin/team/del/{id}
+  defaults:
+    _controller: WPTournamentBundle:Tournament:adminTeamDel
+  requirements:
+    id: \d+
+
+wp_tournament_adminMessages:
+    path: /admin/message
+    defaults:
+        _controller: WPTournamentBundle:Tournament:adminMessages
+ 
+wp_tournament_adminMessage:
+    path: /admin/message/{id}
+    defaults:
+        _controller: WPTournamentBundle:Tournament:adminReadMessage
+    requirements:
+        id: \d+
+        
+wp_tournament_adminDelMessage:
+    path: /admin/message/del/{id}
+    defaults:
+        _controller: WPTournamentBundle:Tournament:adminDelMessage
+    requirements:
+        id: \d+

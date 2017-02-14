@@ -1,0 +1,55 @@
+{% extends "WPTournamentBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <div class="row" style="margin-top:50px">
+        <div id="menuAdmin" class="col-md-3">
+            <ul>
+                <li><a href="{{ path('wp_tournament_adminEvent') }}">Event</a></li>
+                <li><a href="{{ path('wp_tournament_adminUser') }}">Utilisateur</a></li>
+                <li><a href="{{ path('wp_tournament_adminTeam') }}">Team</a></li>
+                <li><a href="{{ path('wp_tournament_adminMessages') }}">Message</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h1>Boîte de réception</h1>
+            <h2>Messages non lus</h2>
+            <table>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>Object</th>
+                    <th>Action</th>
+                </tr>
+                {% for msg in msgNotRead %}
+                    <tr>
+                        <td>{{ msg.pseudo }}</td>
+                        <td>{{ msg.mail }}</td>
+                        <td>{{ msg.object }}</td>
+                        <td><a href="{{ path('wp_tournament_adminMessage',{'id':msg.id}) }}">Lire</a> - <a href="{{ path('wp_tournament_adminDelMessage',{'id':msg.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <h2>Messages lus</h2>
+            <table>
+                <tr>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>Object</th>
+                    <th>Action</th>
+                </tr>
+                {% for msg in msgRead %}
+                    <tr>
+                        <td>{{ msg.pseudo }}</td>
+                        <td>{{ msg.mail }}</td>
+                        <td>{{ msg.object }}</td>
+                        <td><a href="{{ path('wp_tournament_adminMessage',{'id':msg.id}) }}">Lire</a> - <a href="{{ path('wp_tournament_adminDelMessage',{'id':msg.id}) }}">Supprimer</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

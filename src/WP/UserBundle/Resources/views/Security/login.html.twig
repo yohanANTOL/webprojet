@@ -1,0 +1,58 @@
+{% extends "WPUserBundle::layout.html.twig" %}
+
+{% block title %}
+    Connexion - {{ parent() }}
+{% endblock %}
+
+{% block bodyContent %}
+    <!-- Page Content -->
+    <div class="container">
+        {% if app.session.flashBag.has('notice') %}
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 flashbag">
+                    {% for msg in app.session.flashBag.get('notice') %}
+                        {{ msg }}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Connexion</h3>
+                {% if error %}
+                    <div id="success">{{ error.message }}</div>
+                {% endif %}
+                <form id="loginForm" action="{{ path('fos_user_security_check') }}" method="post">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label for="username">Pseudo:</label>
+                            <input type="text" class="form-control" id="username" name="_username" required
+                                   data-validation-required-message="Please enter your username.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label for="password">Mot de passe:</label>
+                            <input type="password" class="form-control" id="password" name="_password" required
+                                   data-validation-required-message="Please enter your password.">
+                        </div>
+                    </div>
+
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary">Connexion</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>Inscription</h3>
+                {% if registerMsg != null %}
+                    <div>{{ registerMsg }}</div>
+                {% endif %}
+                {% form_theme form 'bootstrap_3_layout.html.twig' %}
+                {{ form(form) }}
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}
